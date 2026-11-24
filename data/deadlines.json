@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-24T04:32:27Z",
+ "generated": "2026-11-24T04:46:10Z",
  "categories": {
   "ML": "Machine Learning",
   "CV": "Computer Vision & Graphics",
@@ -11089,14 +11089,14 @@
      "label": "Abstract · Separate satellite event: August 15-17, 2027, Hengqin, China",
      "utc": "2027-01-05T11:59:59Z",
      "original": "2027-01-04 23:59:59 AoE",
-     "status": "verified"
+     "status": "unreachable"
     },
     {
      "type": "paper",
      "label": "Separate satellite event: August 15-17, 2027, Hengqin, China",
      "utc": "2027-01-12T11:59:59Z",
      "original": "2027-01-11 23:59:59 AoE",
-     "status": "verified"
+     "status": "unreachable"
     }
    ],
    "source": "ccfddl",
