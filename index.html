@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Deadlines</title>
+<meta name="description" content="Countdowns to submission deadlines for AI conferences, checked against official websites.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='17' r='12' fill='none' stroke='%23d9480f' stroke-width='3'/><path d='M16 10v7l5 3' stroke='%23d9480f' stroke-width='3' fill='none' stroke-linecap='round'/></svg>">
+<style>
+:root {
+  --bg: #f6f5f2; --surface: #ffffff; --surface-2: #f0efeb; --border: #e3e1dc;
+  --text: #1d1c1a; --muted: #6b6862; --faint: #9a968f;
+  --accent: #d9480f; --urgent: #c92a2a; --soon: #c77700; --ok: #2b8a3e; --warn: #b7791f;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 2px 8px rgba(0,0,0,.04);
+  --c-ML:#3b5bdb; --c-CV:#0c8599; --c-NLP:#9c36b5; --c-RO:#e8590c; --c-SP:#c2255c;
+  --c-DM:#2f9e44; --c-AP:#5f3dc4; --c-KR:#846200; --c-HCI:#d6336c; --c-IRSM:#1971c2; --c-MISC:#868e96;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141413; --surface: #1d1c1b; --surface-2: #262523; --border: #33312e;
+    --text: #ecebe8; --muted: #a29e97; --faint: #74706a;
+    --accent: #ff8a4c; --urgent: #ff6b6b; --soon: #fcc419; --ok: #69db7c; --warn: #f2b84b;
+    --shadow: none;
+    --c-ML:#748ffc; --c-CV:#3bc9db; --c-NLP:#da77f2; --c-RO:#ff922b; --c-SP:#f06595;
+    --c-DM:#69db7c; --c-AP:#9775fa; --c-KR:#e0b84a; --c-HCI:#f783ac; --c-IRSM:#4dabf7; --c-MISC:#adb5bd;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141413; --surface: #1d1c1b; --surface-2: #262523; --border: #33312e;
+  --text: #ecebe8; --muted: #a29e97; --faint: #74706a;
+  --accent: #ff8a4c; --urgent: #ff6b6b; --soon: #fcc419; --ok: #69db7c; --warn: #f2b84b;
+  --shadow: none;
+  --c-ML:#748ffc; --c-CV:#3bc9db; --c-NLP:#da77f2; --c-RO:#ff922b; --c-SP:#f06595;
+  --c-DM:#69db7c; --c-AP:#9775fa; --c-KR:#e0b84a; --c-HCI:#f783ac; --c-IRSM:#4dabf7; --c-MISC:#adb5bd;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Roboto, sans-serif;
+}
+a { color: inherit; }
+.wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+
+header { padding: 36px 0 18px; }
+h1 { margin: 0; font-size: 28px; letter-spacing: -.02em; display: flex; align-items: center; gap: 10px; }
+h1 .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+.sub { color: var(--muted); margin: 6px 0 0; max-width: 680px; }
+.meta { color: var(--faint); font-size: 13px; margin-top: 8px; }
+.meta a { color: var(--muted); }
+
+.controls {
+  position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border); padding: 12px 0;
+}
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.row + .row { margin-top: 10px; }
+input[type=search] {
+  flex: 1 1 220px; min-width: 0; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); font: inherit;
+}
+input[type=search]:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.chip, .btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--muted);
+  font: 500 13px/1.2 inherit; font-family: inherit; cursor: pointer; user-select: none; white-space: nowrap;
+}
+.chip:hover, .btn:hover { color: var(--text); border-color: var(--faint); }
+.chip .sw { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.chip[aria-pressed="true"] { color: var(--text); border-color: var(--c, var(--text)); background: color-mix(in srgb, var(--c, var(--text)) 12%, var(--surface)); }
+.chip .n { color: var(--faint); font-variant-numeric: tabular-nums; }
+.toggle[aria-pressed="true"] { color: var(--text); border-color: var(--text); }
+.btn { border-radius: 8px; }
+.spacer { flex: 1; }
+
+main { padding: 18px 0 60px; }
+h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 26px 0 10px; font-weight: 600; }
+h2:first-child { margin-top: 4px; }
+.empty { color: var(--muted); padding: 30px 0; text-align: center; }
+
+.card {
+  position: relative; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 6px 20px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 16px 18px 14px 22px; margin-bottom: 10px; box-shadow: var(--shadow); overflow: hidden;
+}
+.card::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--c, var(--faint)); }
+.card.past { opacity: .55; }
+.title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.title a { font-size: 19px; font-weight: 700; text-decoration: none; letter-spacing: -.01em; }
+.title a:hover { text-decoration: underline; }
+.tag { font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; color: var(--c); background: color-mix(in srgb, var(--c) 13%, transparent); }
+.rank { font-size: 11px; color: var(--muted); border: 1px solid var(--border); padding: 0 6px; border-radius: 4px; }
+.rank b { color: var(--text); font-weight: 600; }
+.full { color: var(--muted); font-size: 14px; }
+.where { color: var(--faint); font-size: 13px; }
+.dls { grid-column: 1 / -1; margin-top: 6px; border-top: 1px dashed var(--border); padding-top: 8px; display: grid; gap: 3px; }
+.dl { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; font-size: 13px; color: var(--muted); }
+.dl .lbl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dl .lbl b { color: var(--text); font-weight: 600; }
+.dl .when { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.dl.gone { color: var(--faint); text-decoration: line-through; }
+.st { font-size: 12px; margin-left: 6px; }
+.st.verified { color: var(--ok); } .st.unverified, .st.unreachable { color: var(--faint); } .st.conflict { color: var(--warn); } .st.manual { color: var(--accent); }
+
+.cd { text-align: right; align-self: start; }
+.cd .big { font: 700 26px/1.1 ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-variant-numeric: tabular-nums; letter-spacing: -.02em; white-space: nowrap; }
+.cd .big small { font-size: 14px; font-weight: 500; color: var(--muted); margin: 0 3px 0 1px; }
+.cd .what { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.cd .local { font-size: 12px; color: var(--faint); }
+.cd.urgent .big { color: var(--urgent); } .cd.soon .big { color: var(--soon); }
+.cd.done .big { color: var(--faint); font-size: 18px; }
+.actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.actions a, .actions button { font-size: 12px; padding: 3px 9px; }
+.note { grid-column: 1 / -1; font-size: 12px; color: var(--warn); }
+
+table.exp { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; font-size: 14px; }
+.exp td { padding: 9px 14px; border-top: 1px solid var(--border); vertical-align: top; }
+.exp tr:first-child td { border-top: 0; }
+.exp .nm { font-weight: 600; white-space: nowrap; }
+.exp .nm::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--c); margin-right: 8px; }
+.exp .est { color: var(--muted); white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; }
+.exp .full { font-size: 13px; }
+footer { color: var(--faint); font-size: 12px; padding: 20px 0 40px; border-top: 1px solid var(--border); }
+footer a { color: var(--muted); }
+
+@media (max-width: 640px) {
+  header { padding-top: 24px; }
+  h1 { font-size: 23px; }
+  .card { grid-template-columns: minmax(0,1fr); padding: 14px 14px 12px 18px; }
+  .cd { text-align: left; }
+  .cd .big { font-size: 22px; }
+  .dl { grid-template-columns: minmax(0,1fr); gap: 0; }
+  .dl .when { text-align: left; }
+  .exp .full { display: none; }
+  .chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <h1><span class="dot"></span>AI Conference Deadlines</h1>
+  <p class="sub">Live countdowns to submission deadlines for AI conferences. Times are converted to your timezone (<span id="tzname"></span>); each deadline is checked against the conference's official site.</p>
+  <div class="meta" id="meta"></div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="row">
+      <input id="q" type="search" placeholder="Search conferences…  ( / )" autocomplete="off">
+      <button class="btn toggle" id="topOnly" aria-pressed="false" title="CCF A or CORE A*">Top-tier only</button>
+      <button class="btn toggle" id="showPast" aria-pressed="false">Show past</button>
+      <button class="btn" id="icsAll" title="Download every visible upcoming deadline as one .ics file">⤓ Export .ics</button>
+    </div>
+    <div class="row chips" id="chips"></div>
+  </div>
+</div>
+
+<main class="wrap" id="main"></main>
+
+<footer class="wrap">
+  Data merged from <a href="https://github.com/ccfddl/ccf-deadlines" target="_blank" rel="noopener">ccfddl</a> and
+  <a href="https://github.com/huggingface/ai-deadlines" target="_blank" rel="noopener">huggingface/ai-deadlines</a>,
+  then checked on each official site. <span class="st verified">✓ on official site</span> means the date appears on the conference's own page;
+  <span class="st unverified">○ not confirmed</span> means it didn't (the page may list it elsewhere). Always double-check the CFP before you submit.
+  Refresh with <code>uv run scripts/update.py</code>.
+</footer>
+
+<script src="data/deadlines.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

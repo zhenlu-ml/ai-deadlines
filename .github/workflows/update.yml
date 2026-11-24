@@ -1,0 +1,21 @@
+name: update-deadlines
+on:
+  schedule:
+    - cron: "17 6 * * *"   # daily
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv run scripts/update.py
+      - name: Commit if changed
+        run: |
+          git add data/
+          if git diff --cached --quiet -- data/deadlines.json; then exit 0; fi
+          git -c user.name="deadline-bot" -c user.email="actions@users.noreply.github.com" \
+            commit -m "data: refresh deadlines $(date -u +%F)"
+          git push

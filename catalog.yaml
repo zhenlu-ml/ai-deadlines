@@ -1,0 +1,143 @@
+# Which conferences to track, and which category chips they belong to.
+# Only conferences listed here appear on the page.
+#
+#   key:      canonical id (lowercase, no punctuation)
+#   subs:     ML CV NLP RO SP DM AP KR HCI IRSM MISC
+#   aliases:  other spellings used by the upstream sources
+#   cfp:      (optional) official page that lists the dates, used for verification
+#             when the conference homepage alone doesn't show them.
+#             {year} is replaced with the edition year.
+
+categories:
+  ML:   Machine Learning
+  CV:   Computer Vision & Graphics
+  NLP:  Natural Language Processing
+  RO:   Robotics
+  SP:   Speech & Signal Processing
+  DM:   Data Mining
+  AP:   Automated Planning
+  KR:   Knowledge Representation
+  HCI:  Human-Computer Interaction
+  IRSM: Information Retrieval & Web
+  MISC: Other AI
+
+conferences:
+  # ---------------- Machine learning / general AI ----------------
+  neurips:   {subs: [ML]}
+  icml:      {subs: [ML]}
+  iclr:      {subs: [ML]}
+  aaai:      {subs: [ML]}
+  ijcai:     {subs: [ML]}
+  aistats:   {subs: [ML]}
+  uai:       {subs: [ML]}
+  colt:      {subs: [ML]}
+  alt:       {subs: [ML]}
+  acml:      {subs: [ML]}
+  cpal:      {subs: [ML]}
+  collas:    {subs: [ML]}
+  log:       {subs: [ML]}
+  probml:    {subs: [ML]}
+  mlsys:     {subs: [ML]}
+  rlc:       {subs: [ML]}
+  chil:      {subs: [ML]}
+  ecai:      {subs: [ML]}
+  pricai:    {subs: [ML]}
+  ijcnn:     {subs: [ML]}
+  icann:     {subs: [ML]}
+  iconip:    {subs: [ML]}
+  esann:     {subs: [ML]}
+  icmla:     {subs: [ML]}
+  ecmlpkdd:  {subs: [ML, DM], aliases: [ecmlpkdd]}
+
+  # ---------------- Computer vision / graphics ----------------
+  cvpr:      {subs: [CV], cfp: "https://cvpr.thecvf.com/Conferences/{year}/Dates"}
+  iccv:      {subs: [CV]}
+  eccv:      {subs: [CV]}
+  wacv:      {subs: [CV]}
+  bmvc:      {subs: [CV]}
+  accv:      {subs: [CV]}
+  3dv:       {subs: [CV]}
+  fg:        {subs: [CV]}
+  icpr:      {subs: [CV]}
+  icdar:     {subs: [CV]}
+  ijcb:      {subs: [CV]}
+  miccai:    {subs: [CV]}
+  icip:      {subs: [CV, SP]}
+  acmmm:     {subs: [CV, MISC]}
+  icme:      {subs: [CV, SP]}
+  icmr:      {subs: [CV, IRSM]}
+  sibgrapi:  {subs: [CV]}
+  siggraph:  {subs: [CV], aliases: [acmsiggraph]}
+  siggraphasia: {subs: [CV], aliases: [acmsiggraphasia]}
+  eurographics: {subs: [CV]}
+
+  # ---------------- NLP ----------------
+  acl:       {subs: [NLP]}
+  emnlp:     {subs: [NLP]}
+  naacl:     {subs: [NLP]}
+  eacl:      {subs: [NLP]}
+  coling:    {subs: [NLP]}
+  conll:     {subs: [NLP]}
+  colm:      {subs: [NLP, ML]}
+  ijcnlp:    {subs: [NLP], aliases: [ijcnlpaacl]}
+  lrec:      {subs: [NLP]}
+  inlg:      {subs: [NLP]}
+  nlpcc:     {subs: [NLP]}
+
+  # ---------------- Robotics ----------------
+  icra:      {subs: [RO]}
+  iros:      {subs: [RO]}
+  rss:       {subs: [RO]}
+  corl:      {subs: [RO, ML]}
+
+  # ---------------- Speech / signal processing ----------------
+  icassp:    {subs: [SP]}
+  interspeech: {subs: [SP]}
+  eusipco:   {subs: [SP]}
+  slt:       {subs: [SP]}
+
+  # ---------------- Data mining ----------------
+  kdd:       {subs: [DM], aliases: [sigkdd]}
+  icdm:      {subs: [DM]}
+  sdm:       {subs: [DM]}
+  pakdd:     {subs: [DM]}
+  cikm:      {subs: [DM, IRSM]}
+  wsdm:      {subs: [DM, IRSM]}
+
+  # ---------------- Planning / knowledge representation ----------------
+  icaps:     {subs: [AP]}
+  aamas:     {subs: [AP, MISC]}
+  kr:        {subs: [KR]}
+  rulemlrr:  {subs: [KR]}
+  iccbr:     {subs: [KR]}
+  ksem:      {subs: [KR]}
+  iswc:      {subs: [KR, IRSM]}
+  eswc:      {subs: [KR, IRSM]}
+
+  # ---------------- HCI ----------------
+  chi:       {subs: [HCI]}
+  uist:      {subs: [HCI]}
+  cscw:      {subs: [HCI]}
+  iui:       {subs: [HCI]}
+  icmi:      {subs: [HCI]}
+  ubicompiswc: {subs: [HCI]}
+
+  # ---------------- IR / web ----------------
+  sigir:     {subs: [IRSM]}
+  ecir:      {subs: [IRSM]}
+  www:       {subs: [IRSM, DM]}
+  recsys:    {subs: [IRSM]}
+  ictir:     {subs: [IRSM]}
+  chiir:     {subs: [IRSM, HCI]}
+  icwsm:     {subs: [IRSM]}
+
+  # ---------------- Misc AI ----------------
+  facct:     {subs: [MISC]}
+  gecco:     {subs: [MISC]}
+  cec:       {subs: [MISC], aliases: [ieeecec]}
+  ppsn:      {subs: [MISC]}
+  ictai:     {subs: [MISC]}
+  cogsci:    {subs: [MISC]}
+  icaif:     {subs: [MISC]}
+  ismb:      {subs: [MISC]}
+  recomb:    {subs: [MISC]}
