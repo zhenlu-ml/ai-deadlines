@@ -16,6 +16,6 @@ jobs:
         run: |
           git add data/
           if git diff --cached --quiet -- data/deadlines.json; then exit 0; fi
-          git -c user.name="deadline-bot" -c user.email="actions@users.noreply.github.com" \
+          git -c user.name="Zhen Lu" -c user.email="26652319+zhenlu-ml@users.noreply.github.com" \
             commit -m "data: refresh deadlines $(date -u +%F)"
           git push
