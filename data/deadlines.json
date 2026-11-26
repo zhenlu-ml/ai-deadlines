@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-25T17:08:19Z",
+ "generated": "2026-11-26T16:49:28Z",
  "categories": {
   "ML": "Machine Learning",
   "CV": "Computer Vision & Graphics",
@@ -8191,14 +8191,14 @@
      "label": "Abstract · Conference track",
      "utc": "2027-02-27T11:59:59Z",
      "original": "2027-02-26 23:59:59 AoE",
-     "status": "unreachable"
+     "status": "verified"
     },
     {
      "type": "paper",
      "label": "Conference track",
      "utc": "2027-03-06T11:59:59Z",
      "original": "2027-03-05 23:59:59 AoE",
-     "status": "unreachable"
+     "status": "verified"
     }
    ],
    "source": "ccfddl",
