@@ -1,5 +1,5 @@
 window.DEADLINES = {
- "generated": "2026-11-26T16:49:28Z",
+ "generated": "2026-11-27T16:35:09Z",
  "categories": {
   "ML": "Machine Learning",
   "CV": "Computer Vision & Graphics",
